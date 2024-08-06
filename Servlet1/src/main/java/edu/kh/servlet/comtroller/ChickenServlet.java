@@ -93,9 +93,9 @@ public class ChickenServlet extends HttpServlet {
 		  <title>
 		  """);
 		
-		sb.append(ordererName + "님의 주문 영수증");
+		 sb.append(ordererName + "님의 주문 영수증");
 		
-		sb.append("</title>");
+		 sb.append("</title>");
 		sb.append("</head>");
 		
 		sb.append("<body>");
