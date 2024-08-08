@@ -22,7 +22,7 @@ public class BookServlet extends HttpServlet {
 		
 		// bookList에 샘플 데이터 추가
 		bookList.add(new Book("자바 공부"    , "백동현" , 10000));
-		bookList.add(new Book("HTML 공부"    , "고현우" , 220000));
+		bookList.add(new Book("HTML 공부"    , "고현우" , 22000));
 		bookList.add(new Book("JS  공부"     , "성상민" , 15000));
 		bookList.add(new Book("CSS 공부"     , "짱구"  , 50000));
 		bookList.add(new Book("Servlet이란"  , "훈이" , 40000));
