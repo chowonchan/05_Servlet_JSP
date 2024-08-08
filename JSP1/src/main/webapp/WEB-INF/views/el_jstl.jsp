@@ -1,4 +1,10 @@
+<%-- prefix : 접두사(앞에 붙는 단어/말) 
+  만약 prefix="c"    -> <c:if>
+  만약 prefix="core" -> <core:if>
+--%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -27,7 +33,7 @@
   <h3>전달 받은 파라미터를 출력하는 방법</h3>
 
   <p style="color:red;">
-    주소 뒤에 쿼리스트링(?name=홍길동&age=20)
+    주소 뒤에 쿼리스트링( ?name=홍길동&age=20 )
     직접 작성해보면서 테스트
   </p>
 
@@ -66,8 +72,9 @@
        다운 받은 라이브러리 추가(복사, 붙여넣기)
 
     3. JSTL을 사용할 JSP 파일 제일 위에
-       taglib 추가 구문 작성
+       taglib 추가 구문 작성(지시자)
   </pre>
+
 
   <h3>JSTL c:if문 사용해보기</h3>
 
@@ -84,7 +91,9 @@
   </c:if>  
   <c:if test="${param.age <= 20}">
     <h3>성인이 아닙니다</h3>
-  </c:if>  
+  </c:if> 
+
+  
 
 </body>
 </html>
