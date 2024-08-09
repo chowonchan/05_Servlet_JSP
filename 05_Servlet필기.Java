@@ -144,6 +144,26 @@ dispatcher.forward(req, resp);
     jsp  : html, css , js, el, jstl 작성가능
           + 동적 페이지(요청에 따라 응답 화면 변함 가능)
 
+  [EL]
+
+  - EL 구문 내 연산 시 parsing 자동으로 일어남
+
+
+  - 파라미터 얻어오는 법
+  1) ${param.key} -> String
+  2) ${paramValues.key}  -> String[]
+
+  - 데이터 유지 범위별 객체에 세팅된 속성 얻어오기
+
+
+  page        ${pageValue.key}
+  request     ${requestValue.key}
+  session     ${sessionValue.key}
+  apllication ${pllicationValue.key}
+
+  if. ${key} 만 존재하는 경우
+  ->좁은 범위의 객체부터 탐색하여
+    일치하는 key가 있으면 출력
 
 
   -[EL의 특징]
@@ -155,6 +175,56 @@ dispatcher.forward(req, resp);
         -> 값을대입하고, 조건/대입하는 구문을 작성x
           오로지 출력 (출력하려면 값을 얻어와야 되는게 당연한거라
           get 단어 사용 X)
+          ex) ${book.getName()}
+
+============================================
+
+  -[JSTL]
+    -Jsp Standard Tag Library
+    - 아파치에서 JSP에서 자주 사용하는 Java 구문을
+      태그 형태로 만들어서 제공해주는 라이브러리
+
+    - 라이브러리 란?
+      남들이 만들어서 준 클래스(코드)
+      -> 제공해준 기능을 사용하면됨
+
+    - JSTL을 사용하기위해서 해야하는것들
+    1)라이브러리 다운로드
+    2) webapp/WEB-INF/lib 폴더에 라이브러리 추가
+    3) 사용하려는 JSP위에 <%@ taglib %> 작성
+
+    - 변수 선언(범위 객체에 속성추가(setAttribute))
+     <c:set var="" value="" scope="" />
+
+    - 변수제거(removeAttribute)
+      <c:remove var="" scope="" />
+
+    - 단일 조건문(else 없음)
+      <c:if test = "${}">
+
+    - 연속된 조건문
+      <c:choose>
+        <c:when test="">
+        </c:when>
+      
+        <c:otherwise>
+        </c:otherwise>
+      </c:choose>
+
+    - 일반 for문 + 향상된 for문
+      {향상}
+    <c:forEach items="" var="">
+    </c:forEach>
+
+      {일반}
+    <c:forEach var="" begin="" end="" step="" >
+    </c:forEach>
+
+    -문자열, 배열, 컬렉션 길이
+      ${fn:length(문자열|배열|컬렉션)}
+
+    - null 또는 비어있으면 true
+    ${empty key|값}
 
 
   -{Servlet/JSP 범위별 내장 객체}
@@ -370,3 +440,48 @@ dispatcher.forward(req, resp);
   5-2) 일반 for문 + 컬렉션 List 사용하기
   
   nameList의 길이(저장된 데이터 개수) : ${fn:length(nameList)}
+
+
+
+  ------------{forward와 redirect}----------
+
+  -{forward : 요청 위임}
+    - 클라이언트 요청을 받은 Servlet/JSP가
+      직접 응답하는 것이 아닌
+      다른 Servlet/JSP에 HttpServletRquest, HttpServletResponse
+      객체를 넘겨서(위임) 대신 응답하게 하는 것
+
+    - 요청 위임시
+      RequestDispatcher(요청 발송자)를 이용
+
+    - 요청 위임할 JSP ***"파일 경로"*** 작성
+
+    - 응답 화면(결과 페이지) 주소는 
+      처음 Servlet이 요청 받은 주소 그대로!
+
+
+  -{redirect (redirection의 줄임말(재 요청, 다른 Servlet 요청))}
+
+    - 클라이언트의 요청을 받은 Servlet/JSP에서
+      직접 응답하지 않고 다른 Servlet/JSP를 다시 요청 하는 것
+
+    - 보통 Servlet요청 처리 후
+      특정 JSP로 요청을 위임해 결과 화면을 응답해 주는 것이 아닌
+      (요청 받은 Servlet이 응답해줄 JSP가 없음)
+
+      다른 Servlet을 다시 요청하여
+      다른 Servlet의 결과 화면을 응답해줌
+
+    - redirect는 다시 요청하는 것!!
+      -> 기존 클라이언트의 req, resp 객체가 사라지고
+        새로운 req, resp 객체가 생성된다!!
+        -> request scope에 세팅된 값들이 모두 사라짐!!
+
+    - redirect는 응답 화면의 주소가
+      처음 요청한 Servlet 주소가 아닌
+      다시 요청한 Servlet 주소로 변경된다 !!
+
+    - 다른 Servlet을 요청하기 위해서는
+      "요청 주소"를 작성해야 한다
+
+

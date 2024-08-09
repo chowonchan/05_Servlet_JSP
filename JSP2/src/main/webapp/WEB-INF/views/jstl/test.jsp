@@ -183,6 +183,8 @@
   </c:choose>
 
 
+
+
   <hr>
 
   <h3>5. 향상된 for문 + 추가 기능 - c:forEach</h3>
@@ -287,6 +289,7 @@
 
     </c:forEach>
   </ul>
+
 
 
 
