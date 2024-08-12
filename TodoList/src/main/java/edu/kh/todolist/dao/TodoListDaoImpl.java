@@ -27,15 +27,15 @@ private final String FILE_PATH = "TodoList.dat";
 		
 		// TodoList.dat 파일이 없으면 새로운 List 생성, 있으면 읽어오기
 		File file = new File(FILE_PATH);
-		
+		http://localhost/todo/detail?index=2
 		if(!file.exists()) {
 			todoList = new ArrayList<Todo>();
 			
-			todoList.add(new Todo("Servlet 공부", "수업 내용 복습",
+			todoList.add(new Todo("Servlet 공부", "수업 내용 복습111",
 					false, LocalDateTime.now() ));
-			todoList.add(new Todo("JSP 공부", "수업 내용 복습",
+			todoList.add(new Todo("JSP 공부", "수업 내용 복습222",
 					false, LocalDateTime.now() ));
-			todoList.add(new Todo("TodoList 공부", "수업 내용 복습",
+			todoList.add(new Todo("TodoList 공부", "수업 내용 복습333",
 					false, LocalDateTime.now() ));
 			
 			
@@ -131,6 +131,7 @@ private final String FILE_PATH = "TodoList.dat";
 	@Override
 	public boolean todoUpdate(int index, String title, String detail) throws FileNotFoundException, IOException {
 		
+		if(index < 0 || index >= todoList.size()) return false;
 		// 수정된 내용 + 이전 Todo의 완료 여부, 등록일을 담은 Todo 객체 생성 
 		Todo newTodo = new Todo();
 		
