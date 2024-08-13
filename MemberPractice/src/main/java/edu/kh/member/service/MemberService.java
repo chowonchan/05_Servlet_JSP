@@ -47,11 +47,11 @@ public interface MemberService {
 
 	/**
 	 * 전달 받은 회원의 금액 누적 하기
-	 * @param target
+	 * @param index
 	 * @param acc
 	 * @return 결과 문자열
 	 */
-	String updateAmount(Member target, int acc) throws IOException;
+	int updateAmount(int index, int acc) throws IOException;
 	
 	/**
 	 * 절달 받은 회원의 번호 입력 하기

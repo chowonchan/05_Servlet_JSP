@@ -20,7 +20,7 @@ import edu.kh.member.dto.Member;
 public class MemberDaoImpl implements MemberDao{
 
 	// 회원 데이터가 저장될 파일 경로를 상수로 지정
-	private final String FILE_PATH = "/io_test/membership.dat";
+	private final String FILE_PATH = "/io_test/membership1.dat";
 	
 	// 회원 목록을 저장해둘 List 객체
 	private List<Member> memberList = null;
@@ -93,6 +93,11 @@ public class MemberDaoImpl implements MemberDao{
 		return true; // 예외 발생하지 않고 성공적으로 파일에 추가됨
 	}
 	
+	@Override
+	public Member getMember(int index) {
+		
+		return memberList.get(index);
+	}
 	
 	// 파일 저장
 	@Override
@@ -111,7 +116,6 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 
-	
 	
 	
 	

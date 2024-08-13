@@ -1,0 +1,17 @@
+#memberList{
+  border-collapse: collapse;
+}
+
+
+#memberList td, #memberList th{
+  padding: 5px 8px;
+}
+
+thead th:nth-of-type(3){
+  width: 200px;
+}
+
+thead th{
+
+  background-color: skyblue;
+}

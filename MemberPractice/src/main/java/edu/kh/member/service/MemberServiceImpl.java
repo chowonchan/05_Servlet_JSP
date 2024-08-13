@@ -95,7 +95,9 @@ public class MemberServiceImpl implements MemberService{
 	
 	// 금액 누적
 	@Override
-	public String updateAmount(Member target, int acc) throws IOException {
+	public int updateAmount(int index, int acc) throws IOException {
+		
+		Member target = dao.getMember(index);
 		
 		// 이전 금액 백업 -> 출력할 문자열 만들때 사용
 		int before = target.getAmount();
@@ -121,6 +123,7 @@ public class MemberServiceImpl implements MemberService{
 		sb.append(" 회원님의 누적 금액\n");
 		sb.append(before + " -> " + currentAmount);
 		
+		int result = 4;
 		// 이전 회원의 등급과
 		// 새로 판별된 등급이 다른 경우
 		if(target.getGrade() != grade) {
@@ -130,12 +133,14 @@ public class MemberServiceImpl implements MemberService{
 			
 			// 회원의 등급을 판별된 등급(grade)으로 변경
 			target.setGrade(grade);
+			result = grade;
 		}
 		
 		
 		// 변경된 데이터를 저장하는 DAO 메서드 호출
 		dao.saveFile();
-		return sb.toString();
+		
+		return result;
 	}
 	
 	
